@@ -36,9 +36,12 @@ function App() {
 
   return (
     <div className="main">
-      <div className="form">
-        <input onChange={handleChange} value={newTask} />
-        <button onClick={addNewTask}>ADD</button>
+      <div className='header'>
+        <h1 className='main_title'>To-Do List</h1>
+        <div className="form">
+          <input className='input' onChange={handleChange} value={newTask} />
+          <button className="add" onClick={addNewTask}>ADD</button>
+        </div>
       </div>
       <div className='todo-list'>
         {todoList.map((task) => {
