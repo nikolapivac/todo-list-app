@@ -15,7 +15,8 @@ function App() {
       // if this is the 1st task, id will be 1
       // if it's not, id will be previous id increased by 1
       id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
-      taskName: newTask
+      taskName: newTask,
+      completed: false
     }
     setTodoList([...todoList, task]);
     setNewTask("");
@@ -23,6 +24,14 @@ function App() {
 
   const removeTask = (id) => {
     setTodoList(todoList.filter((task) => task.id !== id));
+  }
+
+  const completeTask = (id) => {
+    setTodoList(todoList.map((task) => {
+      if (task.id === id) {
+        return {...task, completed: true };
+      } else return task;
+    }))
   }
 
   return (
@@ -33,7 +42,7 @@ function App() {
       </div>
       <div className='todo-list'>
         {todoList.map((task) => {
-          return <Task task={task} removeTask={removeTask} />
+          return <Task task={task} removeTask={removeTask} completeTask={completeTask}/>
         })}
       </div>
     </div>
