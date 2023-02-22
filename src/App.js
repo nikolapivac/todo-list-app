@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Task from './components/Task';
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       taskName: newTask
     }
     setTodoList([...todoList, task]);
+    setNewTask("");
   }
 
   const removeTask = (id) => {
@@ -26,17 +28,12 @@ function App() {
   return (
     <div className="main">
       <div className="form">
-        <input onChange={handleChange} />
+        <input onChange={handleChange} value={newTask} />
         <button onClick={addNewTask}>ADD</button>
       </div>
       <div className='todo-list'>
         {todoList.map((task) => {
-          return (
-            <div className='task'>
-              <p>{task.taskName}</p>
-              <button onClick={() => removeTask(task.id)}>x</button>
-            </div>
-          )
+          return <Task task={task} removeTask={removeTask} />
         })}
       </div>
     </div>
